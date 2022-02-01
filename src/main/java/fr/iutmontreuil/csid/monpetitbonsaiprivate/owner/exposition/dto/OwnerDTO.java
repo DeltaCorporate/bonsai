@@ -1,13 +1,13 @@
 package fr.iutmontreuil.csid.monpetitbonsaiprivate.owner.exposition.dto;
 
-import java.util.Set;
+import java.util.List;
 import java.util.UUID;
 
 public class OwnerDTO {
 
     private UUID id;
     private String name;
-    private Set<BonsaiDTO> bonsaiDTOS;
+    private List<BonsaiDTO> bonsais;
 
     public UUID getId() {
         return id;
@@ -25,12 +25,12 @@ public class OwnerDTO {
         this.name = name;
     }
 
-    public Set<BonsaiDTO> getBonsaiDTOS() {
-        return bonsaiDTOS;
+    public List<BonsaiDTO> getBonsais() {
+        return bonsais;
     }
 
-    public void setBonsaiDTOS(Set<BonsaiDTO> bonsaiDTOS) {
-        this.bonsaiDTOS = bonsaiDTOS;
+    public void setBonsais(List<BonsaiDTO> bonsais) {
+        this.bonsais = bonsais;
     }
 
     public OwnerDTO(){};

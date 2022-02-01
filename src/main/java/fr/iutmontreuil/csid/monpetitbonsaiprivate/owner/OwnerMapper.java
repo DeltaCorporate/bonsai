@@ -18,13 +18,17 @@ public class OwnerMapper {
         OwnerDTO OwnerDto = new OwnerDTO();
         OwnerDto.setName(owner.getName());
         OwnerDto.setId(owner.getId());
+        OwnerDto.setBonsais(OwnerMapper.mapModelsToDtosBonsai(owner.getBonsais()));
         return OwnerDto;
     }
 
     public static Owner mapDtoToModelOwner(OwnerDTO ownerDTO) {
         UUID id = ownerDTO.getId();
         String name = ownerDTO.getName();
-        return new Owner(id, name);
+        List<BonsaiDTO> bonsaiDTOList= ownerDTO.getBonsais();
+        Owner owner = new Owner(id, name);
+        owner.setBonsais(OwnerMapper.mapDtosToModelsBonsai(bonsaiDTOList));
+        return owner;
     }
 
     public static List<Owner> mapDtosToModelsOwner(List<OwnerDTO> ownerDTOS) {
@@ -53,7 +57,9 @@ public class OwnerMapper {
     }
 
     public static Owner mapEntityToModelOwner(OwnerEntity ownerEntity) {
-        return new Owner(ownerEntity.getId(), ownerEntity.getName());
+        Owner owner = new Owner(ownerEntity.getId(), ownerEntity.getName());
+        owner.setBonsais(OwnerMapper.mapEntitiesToModelsBonsai(ownerEntity.getBonsaiEntities()));
+        return owner;
     }
 
     public static BonsaiDTO mapModelToDto(Bonsai bonsai) {

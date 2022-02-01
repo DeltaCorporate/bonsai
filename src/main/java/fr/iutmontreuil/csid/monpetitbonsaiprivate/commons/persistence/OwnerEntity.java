@@ -5,7 +5,7 @@ import fr.iutmontreuil.csid.monpetitbonsaiprivate.bonsai.domain.model.Bonsai;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.List;
 import java.util.UUID;
 
 @Entity(name = "Owner")
@@ -22,13 +22,13 @@ public class OwnerEntity {
 
 
     @OneToMany(mappedBy = "ownerEntity")
-    private Set<BonsaiEntity> bonsaiEntities;
+    private List<BonsaiEntity> bonsaiEntities;
 
-    public Set<BonsaiEntity> getBonsaiEntities() {
+    public List<BonsaiEntity> getBonsaiEntities() {
         return bonsaiEntities;
     }
 
-    public void setBonsaiEntities(Set<BonsaiEntity> bonsaiEntities) {
+    public void setBonsaiEntities(List<BonsaiEntity> bonsaiEntities) {
         this.bonsaiEntities = bonsaiEntities;
     }
 

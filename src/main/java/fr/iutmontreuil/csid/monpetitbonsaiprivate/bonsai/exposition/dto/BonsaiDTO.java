@@ -8,7 +8,7 @@ public class BonsaiDTO {
 
     private String name;
     private String species;
-
+    private UUID owner_id;
 
     private String status;
 

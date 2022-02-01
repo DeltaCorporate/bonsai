@@ -1,12 +1,9 @@
 package fr.iutmontreuil.csid.monpetitbonsaiprivate.commons.persistence;
 
-import lombok.Getter;
-import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.List;
 import java.util.UUID;
 
 @Entity(name = "Bonsai")
@@ -19,12 +16,10 @@ public class BonsaiEntity {
     private UUID id;
 
 
-
+    @ManyToOne(targetEntity = OwnerEntity.class)
     @Column(name = "name")
     private String name;
 
-
-//
 
     @Column(name = "status")
     private String status;
@@ -35,12 +30,17 @@ public class BonsaiEntity {
     private String species;
 
 
-    @Column(name = "acquisition_age")
-    private int acquisition_age;
+    @Column(name = "age")
+    private int age;
+
+
+
 
 
     @Column(name="acquisition_date")
     private LocalDate acquisition_date;
+
+
 
     public BonsaiEntity() {
     }
@@ -53,12 +53,12 @@ public class BonsaiEntity {
         this.acquisition_date = acquisition_date;
     }
 
-    public int getAcquisition_age() {
-        return acquisition_age;
+    public int getAge() {
+        return age;
     }
 
-    public void setAcquisition_age(int acquisition_age) {
-        this.acquisition_age = acquisition_age;
+    public void setAge(int age) {
+        this.age = age;
     }
     public UUID getId() {
         return id;

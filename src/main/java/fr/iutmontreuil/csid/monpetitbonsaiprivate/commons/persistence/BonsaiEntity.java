@@ -17,6 +17,9 @@ public class BonsaiEntity {
 
 
     @ManyToOne(targetEntity = OwnerEntity.class)
+    @JoinColumn(name = "owner_id")
+    private OwnerEntity ownerEntity;
+
     @Column(name = "name")
     private String name;
 

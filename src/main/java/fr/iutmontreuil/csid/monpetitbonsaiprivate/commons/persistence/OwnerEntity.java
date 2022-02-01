@@ -21,7 +21,7 @@ public class OwnerEntity {
     private String name;
 
 
-    @OneToMany(mappedBy = "owner_id")
+    @OneToMany(mappedBy = "ownerEntity")
     private Set<BonsaiEntity> bonsaiEntities;
 
     public Set<BonsaiEntity> getBonsaiEntities() {

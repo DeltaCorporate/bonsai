@@ -41,11 +41,15 @@ public class OwnerService {
     }
 
 
-    public BonsaiDTO transferBonsai(UUID owner_id, UUID bonsai_id, UUID newOwnerId) {
+    public void transferBonsai(UUID owner_id, UUID bonsai_id, UUID newOwnerId) {
         Owner owner = ownerRepository.findById(owner_id);
         Owner newOwner = ownerRepository.findById(newOwnerId);
         Bonsai bonsai = owner.getBonsai(bonsai_id);
         ownerRepository.updateBonsaiOwner(newOwner.getId(), bonsai.getId());
-        return OwnerMapper.mapModelToDtoBonsai(bonsai);
+    }
+
+    public void addBonsais(UUID owner_id, List<UUID> uuids) {
+        Owner owner = ownerRepository.findById(owner_id);
+        ownerRepository.addBonsais(owner, uuids);
     }
 }

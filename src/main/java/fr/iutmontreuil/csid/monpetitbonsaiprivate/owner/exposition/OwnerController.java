@@ -49,9 +49,15 @@ public class OwnerController {
     }
 
     @PostMapping("/owner/{owner_id}/bonsais/{bonsai_id}/transfer")
-    public ResponseEntity<BonsaiDTO> transferBonsai(@PathVariable UUID owner_id, @PathVariable UUID bonsai_id,@RequestBody OwnerDTO ownerDTO){
-        BonsaiDTO bonsaiDTO = ownerService.transferBonsai(owner_id, bonsai_id,ownerDTO.getId());
-        return ResponseEntity.ok(bonsaiDTO);
+    public ResponseEntity<Void> transferBonsai(@PathVariable UUID owner_id, @PathVariable UUID bonsai_id,@RequestBody OwnerDTO ownerDTO){
+        ownerService.transferBonsai(owner_id, bonsai_id,ownerDTO.getId());
+        return ResponseEntity.ok().build();
+    }
+
+    @PostMapping(" /owner/{owner_id}/bonsais")
+    public ResponseEntity<Void> addBonsai(@PathVariable UUID owner_id, @RequestBody List<UUID> uuids){
+        ownerService.addBonsais(owner_id, uuids);
+        return ResponseEntity.ok().build();
     }
 
 }

@@ -35,4 +35,21 @@ public class Owner {
         this.id = id;
         this.name = name;
     }
+
+    public Bonsai getBonsai(UUID bonsai_id) {
+        for (Bonsai bonsai : bonsais) {
+            if (bonsai.getId().equals(bonsai_id)) {
+                return bonsai;
+            }
+        }
+        return null;
+    }
+
+    public void removeBonsai(Bonsai bonsai) {
+        bonsais.remove(bonsai);
+    }
+
+    public void addBonsai(Bonsai bonsai) {
+        bonsais.add(bonsai);
+    }
 }

@@ -5,6 +5,10 @@ import java.util.UUID;
 public class BonsaiDTO {
     private UUID id;
 
+
+    private String name;
+    private String species;
+    private int age;
     public UUID getId() {
         return id;
     }
@@ -36,10 +40,6 @@ public class BonsaiDTO {
     public void setAge(int age) {
         this.age = age;
     }
-
-    private String name;
-    private String species;
-    private int age;
 
     public BonsaiDTO() {}
 }

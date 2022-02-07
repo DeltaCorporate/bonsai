@@ -1,5 +1,6 @@
 package fr.iutmontreuil.csid.monpetitbonsaiprivate.owner.repository;
 
+import fr.iutmontreuil.csid.monpetitbonsaiprivate.commons.persistence.BonsaiDao;
 import fr.iutmontreuil.csid.monpetitbonsaiprivate.commons.persistence.OwnerDao;
 import fr.iutmontreuil.csid.monpetitbonsaiprivate.commons.persistence.OwnerEntity;
 import fr.iutmontreuil.csid.monpetitbonsaiprivate.owner.OwnerMapper;
@@ -13,9 +14,11 @@ import java.util.UUID;
 public class OwnerRepository {
 
     private final OwnerDao ownerDao;
+    private final BonsaiDao bonsaiDao;
 
-    public OwnerRepository(OwnerDao ownerDao) {
+    public OwnerRepository(OwnerDao ownerDao,BonsaiDao bonsaiDao) {
         this.ownerDao = ownerDao;
+        this.bonsaiDao = bonsaiDao;
     }
 
     public  Owner create(Owner owner) {
@@ -30,5 +33,14 @@ public class OwnerRepository {
 
     public Owner findById(UUID id) {
         return OwnerMapper.mapEntityToModelOwner(ownerDao.findById(id).get());
+    }
+
+    public void update(Owner owner) {
+        OwnerEntity ownerToUpdate = OwnerMapper.mapModelToEntityOwner(owner);
+        ownerDao.save(ownerToUpdate);
+    }
+
+    public void updateBonsaiOwner(UUID ownerId, UUID bonsaiId) {
+        bonsaiDao.updateBonsai(ownerId, bonsaiId);
     }
 }

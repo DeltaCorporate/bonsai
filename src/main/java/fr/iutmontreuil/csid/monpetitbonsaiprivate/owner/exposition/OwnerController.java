@@ -4,6 +4,7 @@ package fr.iutmontreuil.csid.monpetitbonsaiprivate.owner.exposition;
 import fr.iutmontreuil.csid.monpetitbonsaiprivate.owner.OwnerMapper;
 import fr.iutmontreuil.csid.monpetitbonsaiprivate.owner.domain.OwnerService;
 import fr.iutmontreuil.csid.monpetitbonsaiprivate.owner.domain.model.Owner;
+import fr.iutmontreuil.csid.monpetitbonsaiprivate.owner.exposition.dto.BonsaiDTO;
 import fr.iutmontreuil.csid.monpetitbonsaiprivate.owner.exposition.dto.OwnerDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,13 +24,15 @@ public class OwnerController {
     }
 
     @GetMapping
-    public List<OwnerDTO> findAll(){
-       return ownerService.findAll();
+    public ResponseEntity<List<OwnerDTO>> findAll() {
+        List<OwnerDTO> ownerDTOS = ownerService.findAll();
+        return ResponseEntity.ok(ownerDTOS);
     }
 
     @GetMapping("/{id}")
-    public OwnerDTO findById(@PathVariable UUID id){
-        return OwnerMapper.mapModelToDtoOwner(ownerService.findById(id));
+    public ResponseEntity<OwnerDTO> findById(@PathVariable UUID id) {
+        OwnerDTO founded = OwnerMapper.mapModelToDtoOwner(ownerService.findById(id));
+        return ResponseEntity.ok(founded);
     }
 
     @PostMapping()
@@ -37,6 +40,18 @@ public class OwnerController {
         Owner bonsaiToCreate = ownerService.create(OwnerMapper.mapDtoToModelOwner(ownerDTO));
         OwnerDTO createdBonsai = OwnerMapper.mapModelToDtoOwner(bonsaiToCreate);
         return ResponseEntity.created(new URI("")).body(createdBonsai);
+    }
+
+@GetMapping("/{id}/bonsais")
+    public ResponseEntity<List<BonsaiDTO>> findAllBonsais(@PathVariable UUID id) {
+        List<BonsaiDTO> bonsaiDTOS = ownerService.findAllBonsais(id);
+        return ResponseEntity.ok(bonsaiDTOS);
+    }
+
+    @PostMapping("/owner/{owner_id}/bonsais/{bonsai_id}/transfer")
+    public ResponseEntity<BonsaiDTO> transferBonsai(@PathVariable UUID owner_id, @PathVariable UUID bonsai_id,@RequestBody OwnerDTO ownerDTO){
+        BonsaiDTO bonsaiDTO = ownerService.transferBonsai(owner_id, bonsai_id,ownerDTO.getId());
+        return ResponseEntity.ok(bonsaiDTO);
     }
 
 }

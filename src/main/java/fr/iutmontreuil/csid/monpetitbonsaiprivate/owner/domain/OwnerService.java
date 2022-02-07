@@ -1,7 +1,9 @@
 package fr.iutmontreuil.csid.monpetitbonsaiprivate.owner.domain;
 
 import fr.iutmontreuil.csid.monpetitbonsaiprivate.owner.OwnerMapper;
+import fr.iutmontreuil.csid.monpetitbonsaiprivate.owner.domain.model.Bonsai;
 import fr.iutmontreuil.csid.monpetitbonsaiprivate.owner.domain.model.Owner;
+import fr.iutmontreuil.csid.monpetitbonsaiprivate.owner.exposition.dto.BonsaiDTO;
 import fr.iutmontreuil.csid.monpetitbonsaiprivate.owner.exposition.dto.OwnerDTO;
 import fr.iutmontreuil.csid.monpetitbonsaiprivate.owner.repository.OwnerRepository;
 import org.springframework.stereotype.Service;
@@ -30,5 +32,20 @@ public class OwnerService {
 
     public Owner findById(UUID id) {
         return ownerRepository.findById(id);
+    }
+
+
+    public List<BonsaiDTO> findAllBonsais(UUID id) {
+        Owner owner = ownerRepository.findById(id);
+        return OwnerMapper.mapModelsToDtosBonsai(owner.getBonsais());
+    }
+
+
+    public BonsaiDTO transferBonsai(UUID owner_id, UUID bonsai_id, UUID newOwnerId) {
+        Owner owner = ownerRepository.findById(owner_id);
+        Owner newOwner = ownerRepository.findById(newOwnerId);
+        Bonsai bonsai = owner.getBonsai(bonsai_id);
+        ownerRepository.updateBonsaiOwner(newOwner.getId(), bonsai.getId());
+        return OwnerMapper.mapModelToDtoBonsai(bonsai);
     }
 }

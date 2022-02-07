@@ -16,6 +16,14 @@ public class BonsaiEntity {
     private UUID id;
 
 
+    public OwnerEntity getOwnerEntity() {
+        return ownerEntity;
+    }
+
+    public void setOwnerEntity(OwnerEntity ownerEntity) {
+        this.ownerEntity = ownerEntity;
+    }
+
     @ManyToOne(targetEntity = OwnerEntity.class)
     @JoinColumn(name = "owner_id")
     private OwnerEntity ownerEntity;

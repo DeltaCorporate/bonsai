@@ -1,5 +1,4 @@
-﻿
-create table bonsai.bonsai (
+﻿create table bonsai.bonsai (
     id id primary key,
     name varchar(100) not null,
     species varchar(100),

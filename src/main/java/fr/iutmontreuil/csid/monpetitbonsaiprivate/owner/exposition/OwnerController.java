@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/owners")
@@ -24,6 +25,11 @@ public class OwnerController {
     @GetMapping
     public List<OwnerDTO> findAll(){
        return ownerService.findAll();
+    }
+
+    @GetMapping("/{id}")
+    public OwnerDTO findById(@PathVariable UUID id){
+        return OwnerMapper.mapModelToDtoOwner(ownerService.findById(id));
     }
 
     @PostMapping()

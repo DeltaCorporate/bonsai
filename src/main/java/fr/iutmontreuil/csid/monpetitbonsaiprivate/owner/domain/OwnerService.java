@@ -7,6 +7,7 @@ import fr.iutmontreuil.csid.monpetitbonsaiprivate.owner.repository.OwnerReposito
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class OwnerService {
@@ -27,4 +28,7 @@ public class OwnerService {
         return ownerRepository.create(owner);
     }
 
+    public Owner findById(UUID id) {
+        return ownerRepository.findById(id);
+    }
 }

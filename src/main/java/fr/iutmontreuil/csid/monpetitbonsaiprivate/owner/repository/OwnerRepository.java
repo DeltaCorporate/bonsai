@@ -7,6 +7,7 @@ import fr.iutmontreuil.csid.monpetitbonsaiprivate.owner.domain.model.Owner;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.UUID;
 
 @Repository
 public class OwnerRepository {
@@ -25,5 +26,9 @@ public class OwnerRepository {
 
     public List<Owner> findAll() {
         return OwnerMapper.mapEntitiesToModelsOwner(ownerDao.findAll());
+    }
+
+    public Owner findById(UUID id) {
+        return OwnerMapper.mapEntityToModelOwner(ownerDao.findById(id).get());
     }
 }

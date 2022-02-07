@@ -75,8 +75,8 @@ public class OwnerMapper {
 
     public static Owner mapEntityToModelOwner(OwnerEntity ownerEntity) {
         Owner owner = new Owner(ownerEntity.getId(), ownerEntity.getName());
-        List<Bonsai> bonsai = owner.getBonsais();
-        if (bonsai != null) {
+        List<BonsaiEntity> bonsaiEntities = ownerEntity.getBonsaiEntities();
+        if (bonsaiEntities != null) {
         owner.setBonsais(OwnerMapper.mapEntitiesToModelsBonsai(ownerEntity.getBonsaiEntities()));
         }
         return owner;

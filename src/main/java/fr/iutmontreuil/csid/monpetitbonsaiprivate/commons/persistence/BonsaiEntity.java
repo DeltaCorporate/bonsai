@@ -4,6 +4,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
 @Entity(name = "Bonsai")
@@ -28,13 +29,16 @@ public class BonsaiEntity {
     @JoinColumn(name = "owner_id")
     private OwnerEntity ownerEntity;
 
+
+    @OneToMany(mappedBy = "bonsai")
+    private List<CareEventEntity> careEventEntities;
+
     @Column(name = "name")
     private String name;
 
 
     @Column(name = "status")
     private String status;
-
 
 
     @Column(name = "species")
@@ -45,12 +49,8 @@ public class BonsaiEntity {
     private int age;
 
 
-
-
-
-    @Column(name="acquisition_date")
+    @Column(name = "acquisition_date")
     private LocalDate acquisition_date;
-
 
 
     public BonsaiEntity() {
@@ -71,17 +71,19 @@ public class BonsaiEntity {
     public void setAge(int age) {
         this.age = age;
     }
+
     public UUID getId() {
         return id;
     }
 
-    public String getName(){
+    public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
     }
+
     public String getSpecies() {
         return species;
     }
@@ -93,12 +95,21 @@ public class BonsaiEntity {
     public void setId(UUID id) {
         this.id = id;
     }
-public String getStatus() {
+
+    public String getStatus() {
         return status;
     }
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public List<CareEventEntity> getCareEventEntities() {
+        return careEventEntities;
+    }
+
+    public void setCareEventEntities(List<CareEventEntity> careEventEntities) {
+        this.careEventEntities = careEventEntities;
     }
 }
 

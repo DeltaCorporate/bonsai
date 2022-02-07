@@ -24,6 +24,12 @@ public class OwnerEntity {
     @OneToMany(mappedBy = "ownerEntity")
     private List<BonsaiEntity> bonsaiEntities;
 
+
+    @OneToMany(mappedBy = "owner")
+    private List<CareEventEntity> careEventEntities;
+
+
+
     public List<BonsaiEntity> getBonsaiEntities() {
         return bonsaiEntities;
     }
@@ -47,5 +53,13 @@ public class OwnerEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<CareEventEntity> getCareEventEntities() {
+        return careEventEntities;
+    }
+
+    public void setCareEventEntities(List<CareEventEntity> careEventEntities) {
+        this.careEventEntities = careEventEntities;
     }
 }

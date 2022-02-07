@@ -1,5 +1,6 @@
 package fr.iutmontreuil.csid.monpetitbonsaiprivate.owner.domain.model;
 
+import java.util.List;
 import java.util.UUID;
 
 public class Bonsai {
@@ -8,6 +9,10 @@ public class Bonsai {
     private String name;
     private String species;
     private int age;
+
+
+
+    private List<CareEvent> careEvents;
 
 // Add the missing fields
 
@@ -43,6 +48,14 @@ public class Bonsai {
 
     public void setSpecies(String species) {
         this.species = species;
+    }
+
+    public List<CareEvent> getCareEvents() {
+        return careEvents;
+    }
+
+    public void setCareEvents(List<CareEvent> careEvents) {
+        this.careEvents = careEvents;
     }
 
 }

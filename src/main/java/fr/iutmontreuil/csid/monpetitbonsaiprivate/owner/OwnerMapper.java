@@ -18,16 +18,21 @@ public class OwnerMapper {
         OwnerDTO OwnerDto = new OwnerDTO();
         OwnerDto.setName(owner.getName());
         OwnerDto.setId(owner.getId());
-        OwnerDto.setBonsais(OwnerMapper.mapModelsToDtosBonsai(owner.getBonsais()));
+        List<Bonsai> bonsais = owner.getBonsais();
+        if (bonsais != null) {
+            OwnerDto.setBonsais(OwnerMapper.mapModelsToDtosBonsai(owner.getBonsais()));
+        }
         return OwnerDto;
     }
 
     public static Owner mapDtoToModelOwner(OwnerDTO ownerDTO) {
         UUID id = ownerDTO.getId();
         String name = ownerDTO.getName();
-        List<BonsaiDTO> bonsaiDTOList= ownerDTO.getBonsais();
+        List<BonsaiDTO> bonsaiDTOList = ownerDTO.getBonsais();
         Owner owner = new Owner(id, name);
-        owner.setBonsais(OwnerMapper.mapDtosToModelsBonsai(bonsaiDTOList));
+        if (bonsaiDTOList != null) {
+            owner.setBonsais(OwnerMapper.mapDtosToModelsBonsai(bonsaiDTOList));
+        }
         return owner;
     }
 
@@ -45,7 +50,19 @@ public class OwnerMapper {
         OwnerEntity ownerEntity = new OwnerEntity();
         ownerEntity.setId(owner.getId());
         ownerEntity.setName(owner.getName());
+        List<Bonsai> bonsai = owner.getBonsais();
+        if (bonsai != null) {
+        ownerEntity.setBonsaiEntities(OwnerMapper.mapModelsToEntitiesBonsai(owner.getBonsais()));
+        }
         return ownerEntity;
+    }
+
+    private static List<BonsaiEntity> mapModelsToEntitiesBonsai(List<Bonsai> bonsais) {
+        List<BonsaiEntity> bonsaiEntities = new ArrayList<>();
+        for (Bonsai b : bonsais) {
+            bonsaiEntities.add(OwnerMapper.mapModelToEntityBonsai(b));
+        }
+        return bonsaiEntities;
     }
 
     public static List<OwnerDTO> mapModelsToDtosOwner(List<Owner> owners) {
@@ -58,7 +75,10 @@ public class OwnerMapper {
 
     public static Owner mapEntityToModelOwner(OwnerEntity ownerEntity) {
         Owner owner = new Owner(ownerEntity.getId(), ownerEntity.getName());
+        List<Bonsai> bonsai = owner.getBonsais();
+        if (bonsai != null) {
         owner.setBonsais(OwnerMapper.mapEntitiesToModelsBonsai(ownerEntity.getBonsaiEntities()));
+        }
         return owner;
     }
 
@@ -74,7 +94,7 @@ public class OwnerMapper {
 
     public static List<Owner> mapEntitiesToModelsOwner(List<OwnerEntity> ownerEntities) {
         List<Owner> owners = new ArrayList<>();
-        for (OwnerEntity b: ownerEntities
+        for (OwnerEntity b : ownerEntities
         ) {
             owners.add(OwnerMapper.mapEntityToModelOwner(b));
 
@@ -88,12 +108,12 @@ public class OwnerMapper {
         String name = bonsaiDTO.getName();
         String species = bonsaiDTO.getSpecies();
         int age = bonsaiDTO.getAge();
-        return new Bonsai(id, name, species,age);
+        return new Bonsai(id, name, species, age);
     }
 
     public static List<Bonsai> mapDtosToModelsBonsai(List<BonsaiDTO> bonsaiDTOS) {
         List<Bonsai> bonsais = new ArrayList<>();
-        for (BonsaiDTO b: bonsaiDTOS
+        for (BonsaiDTO b : bonsaiDTOS
         ) {
             bonsais.add(OwnerMapper.mapDtoToModelBonsai(b));
         }
@@ -119,12 +139,12 @@ public class OwnerMapper {
 
     public static Bonsai mapEntityToModelBonsai(BonsaiEntity bonsaiEntity) {
 
-        return new Bonsai(bonsaiEntity.getId(), bonsaiEntity.getName(), bonsaiEntity.getSpecies(),bonsaiEntity.getAge());
+        return new Bonsai(bonsaiEntity.getId(), bonsaiEntity.getName(), bonsaiEntity.getSpecies(), bonsaiEntity.getAge());
     }
 
     public static List<Bonsai> mapEntitiesToModelsBonsai(List<BonsaiEntity> bonsaiEntities) {
         List<Bonsai> bonsais = new ArrayList<>();
-        for (BonsaiEntity b: bonsaiEntities
+        for (BonsaiEntity b : bonsaiEntities
         ) {
             bonsais.add(OwnerMapper.mapEntityToModelBonsai(b));
 

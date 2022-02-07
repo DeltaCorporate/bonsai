@@ -27,8 +27,8 @@ public class OwnerController {
     }
 
     @PostMapping()
-    public ResponseEntity<OwnerDTO> createOwner(@RequestBody OwnerDTO bonsaiDTO) throws URISyntaxException {
-        Owner bonsaiToCreate = ownerService.create(OwnerMapper.mapDtoToModelOwner(bonsaiDTO));
+    public ResponseEntity<OwnerDTO> createOwner(@RequestBody OwnerDTO ownerDTO) throws URISyntaxException {
+        Owner bonsaiToCreate = ownerService.create(OwnerMapper.mapDtoToModelOwner(ownerDTO));
         OwnerDTO createdBonsai = OwnerMapper.mapModelToDtoOwner(bonsaiToCreate);
         return ResponseEntity.created(new URI("")).body(createdBonsai);
     }

@@ -64,7 +64,7 @@ public class BonsaiService {
         bonsaiRepository.changeStatus(bonsai1Founded);
     }
 
-    public List<CareEventDto> findAllBonsaiEvents(UUID id) {
+    public List<CareEventDto> findAllBonsaiEvents(UUID id, String type) {
         return(CareEventMapper.mapModelsToDTOS(bonsaiRepository.findAllBonsaiEvents(id)));
     }
 

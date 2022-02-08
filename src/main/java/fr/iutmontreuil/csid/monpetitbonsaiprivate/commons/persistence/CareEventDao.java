@@ -11,4 +11,7 @@ public interface CareEventDao extends JpaRepository<CareEventEntity, UUID> {
 
     @Query(value = "select *  from bonsai.care_event where bonsai_id =:val", nativeQuery = true)
     List<CareEventEntity> findByBonsai(@Param("val") UUID val);
+
+    @Query(value = "select *  from bonsai.care_event where bonsai_id =:val and care_type =:type", nativeQuery = true)
+    List<CareEventEntity> findAllByType(@Param("type") String type, @Param("val") UUID val);
 }

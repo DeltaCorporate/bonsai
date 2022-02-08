@@ -1,7 +1,9 @@
 package fr.iutmontreuil.csid.monpetitbonsaiprivate.bonsai.exposition;
 import fr.iutmontreuil.csid.monpetitbonsaiprivate.bonsai.BonsaiMapper;
+import fr.iutmontreuil.csid.monpetitbonsaiprivate.bonsai.CareEventMapper;
 import fr.iutmontreuil.csid.monpetitbonsaiprivate.bonsai.domain.BonsaiService;
 import fr.iutmontreuil.csid.monpetitbonsaiprivate.bonsai.domain.model.Bonsai;
+import fr.iutmontreuil.csid.monpetitbonsaiprivate.bonsai.domain.model.CareEvent;
 import fr.iutmontreuil.csid.monpetitbonsaiprivate.bonsai.exposition.dto.BonsaiDTO;
 import fr.iutmontreuil.csid.monpetitbonsaiprivate.bonsai.exposition.dto.CareEventDto;
 import org.springframework.http.ResponseEntity;
@@ -65,8 +67,8 @@ public class BonsaiController {
     }
 
     @GetMapping("/bonsais/{id}/care-events")
-    public ResponseEntity<List<CareEventDto>> allEventsOfBonsai(@PathVariable UUID id) {
-        List<CareEventDto> bonsaiEvents = bonsaiService.findAllBonsaiEvents(id);
+    public ResponseEntity<List<CareEventDto>> allEventsOfBonsai(@PathVariable UUID id, @RequestParam(required = false,name = "type") String type) {
+        List<CareEventDto> bonsaiEvents = bonsaiService.findAllBonsaiEvents(id, type);
         return ResponseEntity.ok(bonsaiEvents);
     }
 

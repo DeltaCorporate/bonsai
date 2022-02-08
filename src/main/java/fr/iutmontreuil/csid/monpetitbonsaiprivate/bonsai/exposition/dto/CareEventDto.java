@@ -1,18 +1,22 @@
-package fr.iutmontreuil.csid.monpetitbonsaiprivate.owner.domain.model;
+package fr.iutmontreuil.csid.monpetitbonsaiprivate.bonsai.exposition.dto;
 
 import fr.iutmontreuil.csid.monpetitbonsaiprivate.commons.persistence.CareType;
+import fr.iutmontreuil.csid.monpetitbonsaiprivate.owner.domain.model.Bonsai;
+import fr.iutmontreuil.csid.monpetitbonsaiprivate.owner.domain.model.Owner;
+import fr.iutmontreuil.csid.monpetitbonsaiprivate.owner.exposition.dto.BonsaiDTO;
+import fr.iutmontreuil.csid.monpetitbonsaiprivate.owner.exposition.dto.OwnerDTO;
 
 import java.time.LocalDate;
 import java.util.UUID;
 
-public class CareEvent {
+public class CareEventDto {
     private UUID id;
     private LocalDate careDate;
-    private Owner owner;
-    private Bonsai bonsai;
+    private OwnerDTO owner;
+    private fr.iutmontreuil.csid.monpetitbonsaiprivate.owner.exposition.dto.BonsaiDTO bonsai;
     private CareType careType;
 
-    public CareEvent(UUID id, LocalDate careDate, Owner owner, Bonsai bonsai, CareType careType) {
+    public CareEventDto(UUID id, LocalDate careDate, OwnerDTO owner, fr.iutmontreuil.csid.monpetitbonsaiprivate.owner.exposition.dto.BonsaiDTO bonsai, CareType careType) {
         this.id = id;
         this.careDate = careDate;
         this.owner = owner;
@@ -36,19 +40,19 @@ public class CareEvent {
         this.careDate = careDate;
     }
 
-    public Owner getOwner() {
+    public OwnerDTO getOwner() {
         return owner;
     }
 
-    public void setOwner(Owner owner) {
+    public void setOwner(OwnerDTO owner) {
         this.owner = owner;
     }
 
-    public Bonsai getBonsai() {
+    public fr.iutmontreuil.csid.monpetitbonsaiprivate.owner.exposition.dto.BonsaiDTO getBonsai() {
         return bonsai;
     }
 
-    public void setBonsai(Bonsai bonsai) {
+    public void setBonsai(BonsaiDTO bonsai) {
         this.bonsai = bonsai;
     }
 

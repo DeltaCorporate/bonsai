@@ -1,9 +1,12 @@
 package fr.iutmontreuil.csid.monpetitbonsaiprivate.bonsai.repository;
 
 import fr.iutmontreuil.csid.monpetitbonsaiprivate.bonsai.BonsaiMapper;
+import fr.iutmontreuil.csid.monpetitbonsaiprivate.bonsai.CareEventMapper;
 import fr.iutmontreuil.csid.monpetitbonsaiprivate.bonsai.domain.model.Bonsai;
+import fr.iutmontreuil.csid.monpetitbonsaiprivate.bonsai.domain.model.CareEvent;
 import fr.iutmontreuil.csid.monpetitbonsaiprivate.commons.persistence.BonsaiDao;
 import fr.iutmontreuil.csid.monpetitbonsaiprivate.commons.persistence.BonsaiEntity;
+import fr.iutmontreuil.csid.monpetitbonsaiprivate.commons.persistence.CareEventDao;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -15,9 +18,11 @@ import java.util.UUID;
 public class BonsaiRepository {
 
     private final BonsaiDao bonsaiDao;
+    private final CareEventDao careventDao;
 
-    public BonsaiRepository(BonsaiDao bonsaiDao) {
+    public BonsaiRepository(BonsaiDao bonsaiDao, CareEventDao careventDao) {
         this.bonsaiDao = bonsaiDao;
+        this.careventDao = careventDao;
     }
 
     public Optional<Bonsai> findById(UUID uuid) {
@@ -57,4 +62,8 @@ public class BonsaiRepository {
         BonsaiEntity bonsaiTochangeStatus = BonsaiMapper.mapModelToEntity(bonsai);
         bonsaiDao.save(bonsaiTochangeStatus);
     }
+    public List<CareEvent> findAllBonsaiEvents(UUID id) {
+        return CareEventMapper.mapEntitiesToModels(careventDao.findByBonsai(id));
+    }
+
 }

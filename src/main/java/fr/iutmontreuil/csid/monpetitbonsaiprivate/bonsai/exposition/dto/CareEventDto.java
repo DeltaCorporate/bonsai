@@ -12,24 +12,17 @@ import java.util.UUID;
 public class CareEventDto {
     private UUID id;
     private LocalDate careDate;
-    private OwnerDTO owner;
-    private fr.iutmontreuil.csid.monpetitbonsaiprivate.owner.exposition.dto.BonsaiDTO bonsai;
+    private UUID owner;
+    private UUID bonsai;
     private CareType careType;
+    public CareEventDto(){};
 
-    public CareEventDto(UUID id, LocalDate careDate, OwnerDTO owner, fr.iutmontreuil.csid.monpetitbonsaiprivate.owner.exposition.dto.BonsaiDTO bonsai, CareType careType) {
+    public CareEventDto(UUID id, LocalDate careDate, UUID owner, UUID bonsai, CareType careType) {
         this.id = id;
         this.careDate = careDate;
         this.owner = owner;
         this.bonsai = bonsai;
         this.careType = careType;
-    }
-
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
     }
 
     public LocalDate getCareDate() {
@@ -40,19 +33,19 @@ public class CareEventDto {
         this.careDate = careDate;
     }
 
-    public OwnerDTO getOwner() {
+    public UUID getOwner() {
         return owner;
     }
 
-    public void setOwner(OwnerDTO owner) {
+    public void setOwner(UUID owner) {
         this.owner = owner;
     }
 
-    public fr.iutmontreuil.csid.monpetitbonsaiprivate.owner.exposition.dto.BonsaiDTO getBonsai() {
+    public UUID getBonsai() {
         return bonsai;
     }
 
-    public void setBonsai(BonsaiDTO bonsai) {
+    public void setBonsai(UUID bonsai) {
         this.bonsai = bonsai;
     }
 
@@ -62,5 +55,13 @@ public class CareEventDto {
 
     public void setCareType(CareType careType) {
         this.careType = careType;
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
     }
 }

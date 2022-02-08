@@ -4,9 +4,11 @@ import fr.iutmontreuil.csid.monpetitbonsaiprivate.bonsai.BonsaiMapper;
 import fr.iutmontreuil.csid.monpetitbonsaiprivate.bonsai.CareEventMapper;
 import fr.iutmontreuil.csid.monpetitbonsaiprivate.bonsai.domain.model.Bonsai;
 import fr.iutmontreuil.csid.monpetitbonsaiprivate.bonsai.domain.model.CareEvent;
+import fr.iutmontreuil.csid.monpetitbonsaiprivate.bonsai.exposition.dto.CareEventDto;
 import fr.iutmontreuil.csid.monpetitbonsaiprivate.commons.persistence.BonsaiDao;
 import fr.iutmontreuil.csid.monpetitbonsaiprivate.commons.persistence.BonsaiEntity;
 import fr.iutmontreuil.csid.monpetitbonsaiprivate.commons.persistence.CareEventDao;
+import fr.iutmontreuil.csid.monpetitbonsaiprivate.commons.persistence.CareEventEntity;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -66,4 +68,8 @@ public class BonsaiRepository {
         return CareEventMapper.mapEntitiesToModels(careventDao.findByBonsai(id));
     }
 
+    public CareEvent createEvent(CareEvent careEvent, UUID id) {
+        CareEventEntity careEventEntityToCreate = CareEventMapper.mapModelToEntity(careEvent);
+        return CareEventMapper.mapEntityToModel(careventDao.save(careEventEntityToCreate));
+    }
 }

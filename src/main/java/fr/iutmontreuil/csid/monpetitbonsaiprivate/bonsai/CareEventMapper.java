@@ -1,7 +1,9 @@
 package fr.iutmontreuil.csid.monpetitbonsaiprivate.bonsai;
 
+import fr.iutmontreuil.csid.monpetitbonsaiprivate.commons.persistence.BonsaiEntity;
 import fr.iutmontreuil.csid.monpetitbonsaiprivate.commons.persistence.CareEventEntity;
 import fr.iutmontreuil.csid.monpetitbonsaiprivate.bonsai.domain.model.CareEvent;
+import fr.iutmontreuil.csid.monpetitbonsaiprivate.commons.persistence.OwnerEntity;
 import fr.iutmontreuil.csid.monpetitbonsaiprivate.owner.OwnerMapper;
 import fr.iutmontreuil.csid.monpetitbonsaiprivate.bonsai.exposition.dto.CareEventDto;
 
@@ -11,26 +13,30 @@ import java.util.List;
 public class CareEventMapper {
 
     public static CareEvent mapDTOtoModel(CareEventDto careEventDTO) {
-        return new CareEvent(careEventDTO.getId(), careEventDTO.getCareDate(), OwnerMapper.mapDtoToModelOwner(careEventDTO.getOwner()), OwnerMapper.mapDtoToModelBonsai(careEventDTO.getBonsai()), careEventDTO.getCareType());
+        return new CareEvent(careEventDTO.getId(), careEventDTO.getCareDate(), careEventDTO.getOwner(), careEventDTO.getBonsai(), careEventDTO.getCareType());
     }
 
     public static CareEventEntity mapModelToEntity(CareEvent careEvent) {
+        OwnerEntity ownerEntity = new OwnerEntity();
+        ownerEntity.setId(careEvent.getOwner());
+        BonsaiEntity bonsaiEntity = new BonsaiEntity();
+        bonsaiEntity.setId(careEvent.getBonsai());
         CareEventEntity careEventEntity = new CareEventEntity();
         careEventEntity.setId(careEvent.getId());
         careEventEntity.setCareDate(careEvent.getCareDate());
-        careEventEntity.setOwner(OwnerMapper.mapModelToEntityOwner(careEvent.getOwner()));
-        careEventEntity.setBonsai(OwnerMapper.mapModelToEntityBonsai(careEvent.getBonsai()));
+        careEventEntity.setOwner(ownerEntity);
+        careEventEntity.setBonsai(bonsaiEntity);
         careEventEntity.setCareType(careEvent.getCareType());
         return careEventEntity;
     }
 
 
     public static CareEvent mapEntityToModel(CareEventEntity careEventEntity) {
-        return new CareEvent(careEventEntity.getId(), careEventEntity.getCareDate(), OwnerMapper.mapEntityToModelOwner(careEventEntity.getOwner()), OwnerMapper.mapEntityToModelBonsai(careEventEntity.getBonsai()), careEventEntity.getCareType());
+        return new CareEvent(careEventEntity.getId(), careEventEntity.getCareDate(), careEventEntity.getOwner().getId(), careEventEntity.getBonsai().getId(), careEventEntity.getCareType());
     }
 
     public static CareEventDto mapModelToDto(CareEvent careEvent) {
-        return new CareEventDto(careEvent.getId(), careEvent.getCareDate(), OwnerMapper.mapModelToDtoOwner(careEvent.getOwner()), OwnerMapper.mapModelToDtoBonsai(careEvent.getBonsai()), careEvent.getCareType());
+        return new CareEventDto(careEvent.getId(), careEvent.getCareDate(), careEvent.getOwner(),careEvent.getBonsai(), careEvent.getCareType());
     }
 
     public static List<CareEventDto> mapModelsToDTOS(List<CareEvent> careEvents){

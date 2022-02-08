@@ -76,4 +76,8 @@ public class BonsaiRepository {
     public void deleteEvent(UUID bonsaiID, UUID eventID) {
         careventDao.deleteEvent(bonsaiID,eventID);
     }
+
+    public List<CareEvent> fidBonsaiByEvent(UUID id, String type) {
+        return CareEventMapper.mapEntitiesToModels(careventDao.findBonsaiByEvent(id, type));
+    }
 }

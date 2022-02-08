@@ -7,7 +7,6 @@ import fr.iutmontreuil.csid.monpetitbonsaiprivate.bonsai.exposition.dto.CareEven
 import fr.iutmontreuil.csid.monpetitbonsaiprivate.bonsai.repository.BonsaiRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -64,8 +63,12 @@ public class BonsaiService {
         bonsaiRepository.changeStatus(bonsai1Founded);
     }
 
-    public List<CareEventDto> findAllBonsaiEvents(UUID id) {
-        return(CareEventMapper.mapModelsToDTOS(bonsaiRepository.findAllBonsaiEvents(id)));
+    public List<CareEventDto> findAllBonsaiEvents(UUID id, String type) {
+        if (type!=null){
+            return CareEventMapper.mapModelsToDTOS(bonsaiRepository.fidBonsaiByEvent(id, type.toUpperCase()));
+        }else {
+            return CareEventMapper.mapModelsToDTOS(bonsaiRepository.findAllBonsaiEvents(id));
+        }
     }
 
 

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -66,8 +67,8 @@ public class BonsaiController {
     }
 
     @GetMapping("/{id}/care-events")
-    public ResponseEntity<List<CareEventDto>> allEventsOfBonsai(@PathVariable UUID id) {
-        List<CareEventDto> bonsaiEvents = bonsaiService.findAllBonsaiEvents(id);
+    public ResponseEntity<List<CareEventDto>> allEventsOfBonsai(@PathVariable UUID id, @RequestParam(required = false,name = "type") String type) {
+        List<CareEventDto> bonsaiEvents = bonsaiService.findAllBonsaiEvents(id, type);
         return ResponseEntity.ok(bonsaiEvents);
     }
 

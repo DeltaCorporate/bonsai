@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import java.time.LocalDate;
 import java.util.UUID;
 
 @Entity(name = "CareEvent")
@@ -22,7 +23,7 @@ public class CareEventEntity {
     private UUID id;
 
     @Column(name = "care_date")
-    private String careDate;
+    private LocalDate careDate;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "care_type")
@@ -45,11 +46,11 @@ public class CareEventEntity {
         this.id = id;
     }
 
-    public String getCareDate() {
+    public LocalDate getCareDate() {
         return careDate;
     }
 
-    public void setCareDate(String careDate) {
+    public void setCareDate(LocalDate careDate) {
         this.careDate = careDate;
     }
 

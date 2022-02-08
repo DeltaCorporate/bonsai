@@ -2,10 +2,12 @@ package fr.iutmontreuil.csid.monpetitbonsaiprivate.owner.repository;
 
 import fr.iutmontreuil.csid.monpetitbonsaiprivate.commons.persistence.BonsaiDao;
 import fr.iutmontreuil.csid.monpetitbonsaiprivate.commons.persistence.BonsaiEntity;
+import fr.iutmontreuil.csid.monpetitbonsaiprivate.commons.persistence.CareEventDao;
 import fr.iutmontreuil.csid.monpetitbonsaiprivate.commons.persistence.OwnerDao;
 import fr.iutmontreuil.csid.monpetitbonsaiprivate.commons.persistence.OwnerEntity;
+import fr.iutmontreuil.csid.monpetitbonsaiprivate.owner.CareEventMapper;
 import fr.iutmontreuil.csid.monpetitbonsaiprivate.owner.OwnerMapper;
-import fr.iutmontreuil.csid.monpetitbonsaiprivate.owner.domain.model.Bonsai;
+import fr.iutmontreuil.csid.monpetitbonsaiprivate.owner.domain.model.CareEvent;
 import fr.iutmontreuil.csid.monpetitbonsaiprivate.owner.domain.model.Owner;
 import org.springframework.stereotype.Repository;
 
@@ -17,11 +19,14 @@ public class OwnerRepository {
 
     private final OwnerDao ownerDao;
     private final BonsaiDao bonsaiDao;
+    CareEventDao careventDao;
 
-    public OwnerRepository(OwnerDao ownerDao, BonsaiDao bonsaiDao) {
+    public OwnerRepository(OwnerDao ownerDao, BonsaiDao bonsaiDao, CareEventDao careventDao) {
         this.ownerDao = ownerDao;
         this.bonsaiDao = bonsaiDao;
+        this.careventDao = careventDao;
     }
+
 
     public Owner create(Owner owner) {
         OwnerEntity ownerToCreate = OwnerMapper.mapModelToEntityOwner(owner);
@@ -48,11 +53,15 @@ public class OwnerRepository {
 
     public void addBonsais(Owner owner, List<UUID> uuids) {
         for (UUID uuid : uuids) {
-            BonsaiEntity bonsai = bonsaiDao.findById(uuid).get();
+            BonsaiEntity bonsai = bonsaiDao.findById(uuid).orElse(new BonsaiEntity());
 
             if (bonsai.getOwnerEntity() == null) {
                 bonsaiDao.updateBonsai(owner.getId(), uuid);
             }
         }
+    }
+
+    public List<CareEvent> findAllBonsaiEvents(UUID id) {
+        return CareEventMapper.mapEntitiesToModels(careventDao.findByBonsai(id));
     }
 }

@@ -70,10 +70,10 @@ public class BonsaiController {
         return ResponseEntity.ok(bonsaiEvents);
     }
 
-/*    @PostMapping("/bonsais/{id}")
+   @PostMapping("/bonsais/{id}")
     public ResponseEntity<CareEventDto> createEvent(@RequestBody CareEventDto careEventDto, @PathVariable UUID id) throws URISyntaxException {
         CareEventDto careEventCreated = bonsaiService.createEvent(careEventDto, id);
         return ResponseEntity.created(new URI("")).body(careEventCreated);
     }
-*/
+
 }

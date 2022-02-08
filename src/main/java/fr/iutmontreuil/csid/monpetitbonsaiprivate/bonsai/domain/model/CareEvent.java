@@ -10,11 +10,11 @@ import java.util.UUID;
 public class CareEvent {
     private UUID id;
     private LocalDate careDate;
-    private Owner owner;
-    private fr.iutmontreuil.csid.monpetitbonsaiprivate.owner.domain.model.Bonsai bonsai;
+    private UUID owner;
+    private UUID bonsai;
     private CareType careType;
 
-    public CareEvent(UUID id, LocalDate careDate, Owner owner, fr.iutmontreuil.csid.monpetitbonsaiprivate.owner.domain.model.Bonsai bonsai, CareType careType) {
+    public CareEvent(UUID id, LocalDate careDate, UUID owner, UUID bonsai, CareType careType) {
         this.id = id;
         this.careDate = careDate;
         this.owner = owner;
@@ -38,19 +38,19 @@ public class CareEvent {
         this.careDate = careDate;
     }
 
-    public Owner getOwner() {
+    public UUID getOwner() {
         return owner;
     }
 
-    public void setOwner(Owner owner) {
+    public void setOwner(UUID owner) {
         this.owner = owner;
     }
 
-    public fr.iutmontreuil.csid.monpetitbonsaiprivate.owner.domain.model.Bonsai getBonsai() {
+    public UUID getBonsai() {
         return bonsai;
     }
 
-    public void setBonsai(Bonsai bonsai) {
+    public void setBonsai(UUID bonsai) {
         this.bonsai = bonsai;
     }
 

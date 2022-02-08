@@ -64,16 +64,23 @@ public class BonsaiController {
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping("/bonsais/{id}/care-events")
+    @GetMapping("/{id}/care-events")
     public ResponseEntity<List<CareEventDto>> allEventsOfBonsai(@PathVariable UUID id) {
         List<CareEventDto> bonsaiEvents = bonsaiService.findAllBonsaiEvents(id);
         return ResponseEntity.ok(bonsaiEvents);
     }
 
-   @PostMapping("/bonsais/{id}")
+   @PostMapping("/care-events/{id}")
     public ResponseEntity<CareEventDto> createEvent(@RequestBody CareEventDto careEventDto, @PathVariable UUID id) throws URISyntaxException {
         CareEventDto careEventCreated = bonsaiService.createEvent(careEventDto, id);
         return ResponseEntity.created(new URI("")).body(careEventCreated);
+    }
+
+
+    @DeleteMapping("/{id}/care-events/{event-id}")
+    public ResponseEntity<Void> deleteEvent(@PathVariable(name = "id") UUID bonsaiID,@PathVariable(name ="event-id" ) UUID eventID){
+        bonsaiService.deleteEvent(bonsaiID,eventID);
+        return ResponseEntity.ok().build();
     }
 
 }

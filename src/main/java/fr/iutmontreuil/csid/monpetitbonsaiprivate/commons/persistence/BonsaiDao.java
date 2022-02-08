@@ -21,4 +21,5 @@ public interface BonsaiDao extends JpaRepository<BonsaiEntity, UUID> {
     @Transactional
     @Query(value = "UPDATE bonsai.bonsai SET owner_id = :ownerId WHERE id = :bonsaiId", nativeQuery = true)
     void updateBonsai( @Param("ownerId") UUID ownerId,@Param("bonsaiId") UUID bonsaiId);
+
 }

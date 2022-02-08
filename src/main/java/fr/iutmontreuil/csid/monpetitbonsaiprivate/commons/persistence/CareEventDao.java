@@ -1,6 +1,7 @@
 package fr.iutmontreuil.csid.monpetitbonsaiprivate.commons.persistence;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -11,4 +12,8 @@ public interface CareEventDao extends JpaRepository<CareEventEntity, UUID> {
 
     @Query(value = "select *  from bonsai.care_event where bonsai_id =:val", nativeQuery = true)
     List<CareEventEntity> findByBonsai(@Param("val") UUID val);
+
+    @Modifying
+    @Query(value = "DELETE from bonsai.care_event where bonsai_id=:bonsaiID and id=:id",nativeQuery = true)
+    void deleteEvent(@Param("bonsaiID") UUID bonsaiID, @Param("id") UUID eventID);
 }

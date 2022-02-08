@@ -6,6 +6,7 @@ import fr.iutmontreuil.csid.monpetitbonsaiprivate.bonsai.domain.model.CareEvent;
 import fr.iutmontreuil.csid.monpetitbonsaiprivate.commons.persistence.OwnerEntity;
 import fr.iutmontreuil.csid.monpetitbonsaiprivate.owner.OwnerMapper;
 import fr.iutmontreuil.csid.monpetitbonsaiprivate.bonsai.exposition.dto.CareEventDto;
+import org.springframework.http.ResponseEntity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,6 +55,4 @@ public class CareEventMapper {
         }
         return careEvents;
     }
-
-
 }

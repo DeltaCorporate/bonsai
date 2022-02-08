@@ -72,4 +72,8 @@ public class BonsaiRepository {
         CareEventEntity careEventEntityToCreate = CareEventMapper.mapModelToEntity(careEvent);
         return CareEventMapper.mapEntityToModel(careventDao.save(careEventEntityToCreate));
     }
+
+    public void deleteEvent(UUID bonsaiID, UUID eventID) {
+        careventDao.deleteEvent(bonsaiID,eventID);
+    }
 }

@@ -72,4 +72,8 @@ public class BonsaiService {
     public CareEventDto createEvent(CareEventDto careEventDto, UUID id) {
         return CareEventMapper.mapModelToDto(bonsaiRepository.createEvent(CareEventMapper.mapDTOtoModel(careEventDto),id));
     }
+
+    public void deleteEvent(UUID bonsaiID, UUID eventID) {
+        bonsaiRepository.deleteEvent(bonsaiID,eventID);
+    }
 }

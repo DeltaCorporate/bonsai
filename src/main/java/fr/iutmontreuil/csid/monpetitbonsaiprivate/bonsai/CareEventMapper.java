@@ -1,9 +1,9 @@
-package fr.iutmontreuil.csid.monpetitbonsaiprivate.owner;
+package fr.iutmontreuil.csid.monpetitbonsaiprivate.bonsai;
 
 import fr.iutmontreuil.csid.monpetitbonsaiprivate.commons.persistence.CareEventEntity;
-import fr.iutmontreuil.csid.monpetitbonsaiprivate.commons.persistence.CareType;
-import fr.iutmontreuil.csid.monpetitbonsaiprivate.owner.domain.model.CareEvent;
-import fr.iutmontreuil.csid.monpetitbonsaiprivate.owner.exposition.dto.CareEventDto;
+import fr.iutmontreuil.csid.monpetitbonsaiprivate.bonsai.domain.model.CareEvent;
+import fr.iutmontreuil.csid.monpetitbonsaiprivate.owner.OwnerMapper;
+import fr.iutmontreuil.csid.monpetitbonsaiprivate.bonsai.exposition.dto.CareEventDto;
 
 import java.util.ArrayList;
 import java.util.List;

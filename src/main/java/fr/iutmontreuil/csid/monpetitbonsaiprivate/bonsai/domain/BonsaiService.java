@@ -1,7 +1,9 @@
 package fr.iutmontreuil.csid.monpetitbonsaiprivate.bonsai.domain;
 
+import fr.iutmontreuil.csid.monpetitbonsaiprivate.bonsai.CareEventMapper;
 import fr.iutmontreuil.csid.monpetitbonsaiprivate.bonsai.domain.model.Bonsai;
 import fr.iutmontreuil.csid.monpetitbonsaiprivate.bonsai.exposition.dto.BonsaiDTO;
+import fr.iutmontreuil.csid.monpetitbonsaiprivate.bonsai.exposition.dto.CareEventDto;
 import fr.iutmontreuil.csid.monpetitbonsaiprivate.bonsai.repository.BonsaiRepository;
 import org.springframework.stereotype.Service;
 
@@ -61,4 +63,12 @@ public class BonsaiService {
         }
         bonsaiRepository.changeStatus(bonsai1Founded);
     }
+
+    public List<CareEventDto> findAllBonsaiEvents(UUID id) {
+        return(CareEventMapper.mapModelsToDTOS(bonsaiRepository.findAllBonsaiEvents(id)));
+    }
+
+
+
+
 }

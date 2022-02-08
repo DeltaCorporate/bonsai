@@ -1,5 +1,7 @@
 package fr.iutmontreuil.csid.monpetitbonsaiprivate.owner.domain.model;
 
+import fr.iutmontreuil.csid.monpetitbonsaiprivate.bonsai.domain.model.CareEvent;
+
 import java.util.List;
 import java.util.UUID;
 

@@ -3,6 +3,7 @@ import fr.iutmontreuil.csid.monpetitbonsaiprivate.bonsai.BonsaiMapper;
 import fr.iutmontreuil.csid.monpetitbonsaiprivate.bonsai.domain.BonsaiService;
 import fr.iutmontreuil.csid.monpetitbonsaiprivate.bonsai.domain.model.Bonsai;
 import fr.iutmontreuil.csid.monpetitbonsaiprivate.bonsai.exposition.dto.BonsaiDTO;
+import fr.iutmontreuil.csid.monpetitbonsaiprivate.bonsai.exposition.dto.CareEventDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -63,4 +64,16 @@ public class BonsaiController {
         return ResponseEntity.noContent().build();
     }
 
+    @GetMapping("/bonsais/{id}/care-events")
+    public ResponseEntity<List<CareEventDto>> allEventsOfBonsai(@PathVariable UUID id) {
+        List<CareEventDto> bonsaiEvents = bonsaiService.findAllBonsaiEvents(id);
+        return ResponseEntity.ok(bonsaiEvents);
+    }
+
+/*    @PostMapping("/bonsais/{id}")
+    public ResponseEntity<CareEventDto> createEvent(@RequestBody CareEventDto careEventDto, @PathVariable UUID id) throws URISyntaxException {
+        CareEventDto careEventCreated = bonsaiService.createEvent(careEventDto, id);
+        return ResponseEntity.created(new URI("")).body(careEventCreated);
+    }
+*/
 }

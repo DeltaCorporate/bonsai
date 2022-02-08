@@ -5,9 +5,9 @@ import fr.iutmontreuil.csid.monpetitbonsaiprivate.commons.persistence.BonsaiEnti
 import fr.iutmontreuil.csid.monpetitbonsaiprivate.commons.persistence.CareEventDao;
 import fr.iutmontreuil.csid.monpetitbonsaiprivate.commons.persistence.OwnerDao;
 import fr.iutmontreuil.csid.monpetitbonsaiprivate.commons.persistence.OwnerEntity;
-import fr.iutmontreuil.csid.monpetitbonsaiprivate.owner.CareEventMapper;
+import fr.iutmontreuil.csid.monpetitbonsaiprivate.bonsai.CareEventMapper;
 import fr.iutmontreuil.csid.monpetitbonsaiprivate.owner.OwnerMapper;
-import fr.iutmontreuil.csid.monpetitbonsaiprivate.owner.domain.model.CareEvent;
+import fr.iutmontreuil.csid.monpetitbonsaiprivate.bonsai.domain.model.CareEvent;
 import fr.iutmontreuil.csid.monpetitbonsaiprivate.owner.domain.model.Owner;
 import org.springframework.stereotype.Repository;
 
@@ -61,7 +61,5 @@ public class OwnerRepository {
         }
     }
 
-    public List<CareEvent> findAllBonsaiEvents(UUID id) {
-        return CareEventMapper.mapEntitiesToModels(careventDao.findByBonsai(id));
-    }
+
 }

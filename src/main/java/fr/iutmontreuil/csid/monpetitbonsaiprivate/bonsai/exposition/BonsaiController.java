@@ -58,6 +58,7 @@ public class BonsaiController {
         return ResponseEntity.noContent().build();
     }
 
+
     @PutMapping("/{uuid}")
     public ResponseEntity<Void> changeStatus(@RequestBody BonsaiDTO bonsaiDTO,@PathVariable("uuid") UUID uuid) {
         bonsaiService.changeStatus(bonsaiDTO,uuid);

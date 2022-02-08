@@ -5,6 +5,9 @@ import fr.iutmontreuil.csid.monpetitbonsaiprivate.commons.persistence.CareType;
 import fr.iutmontreuil.csid.monpetitbonsaiprivate.owner.domain.model.CareEvent;
 import fr.iutmontreuil.csid.monpetitbonsaiprivate.owner.exposition.dto.CareEventDto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CareEventMapper {
 
     public static CareEvent mapDTOtoModel(CareEventDto careEventDTO) {
@@ -28,6 +31,22 @@ public class CareEventMapper {
 
     public static CareEventDto mapModelToDto(CareEvent careEvent) {
         return new CareEventDto(careEvent.getId(), careEvent.getCareDate(), OwnerMapper.mapModelToDtoOwner(careEvent.getOwner()), OwnerMapper.mapModelToDtoBonsai(careEvent.getBonsai()), careEvent.getCareType());
+    }
+
+    public static List<CareEventDto> mapModelsToDTOS(List<CareEvent> careEvents){
+        List<CareEventDto> careEventDtos = new ArrayList<>();
+        for(CareEvent careEvent : careEvents){
+            careEventDtos.add(CareEventMapper.mapModelToDto(careEvent));
+        }
+        return careEventDtos;
+    }
+
+    public static List<CareEvent> mapEntitiesToModels(List<CareEventEntity> careEventEntities){
+        ArrayList<CareEvent> careEvents = new ArrayList<>();
+        for(CareEventEntity careEventEntity : careEventEntities){
+            careEvents.add(CareEventMapper.mapEntityToModel(careEventEntity));
+        }
+        return careEvents;
     }
 
 
